@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  learn-YYModel
+//
+//  Created by oahgnehzoul on 2017/3/7.
+//  Copyright © 2017年 oahgnehzoul. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "YYModel.h"
+#import "AFNetworking.h"
+#import "HexColors.h"
+#import "Masonry.h"
+#import "NSString+Common.h"
+#import "SVPullToRefresh.h"
+#define kScreen_Bounds [UIScreen mainScreen].bounds
+#define kScreen_Height [UIScreen mainScreen].bounds.size.height
+#define kScreen_Width [UIScreen mainScreen].bounds.size.width
+#endif /* PrefixHeader_pch */
