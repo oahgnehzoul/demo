@@ -8,11 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@interface EventDrivenStockItem : NSObject<YYModel>
+@property (nonatomic, copy) NSString *stockName;
+@property (nonatomic, copy) NSString *stockCode;
+@property (nonatomic, assign) CGFloat height;
+@end
+
 @interface EventDrivenItem : NSObject<YYModel>
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subTitle;
-@property (nonatomic, copy) NSString *stockTitle;
+@property (nonatomic, copy) NSString *stockStr;
 @property (nonatomic, copy) NSString *time;
 @property (nonatomic, assign) NSInteger eventDrivenId;
+
+@property (nonatomic, strong) NSArray *stocks;
+@property (nonatomic, assign) CGFloat height;
 @end

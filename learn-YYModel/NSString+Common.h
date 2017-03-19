@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Common)
-- (CGSize)getSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
-- (CGFloat)getHeightWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
-- (CGFloat)getWidthWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+- (CGSize)getSizeWithFont:(CGFloat)font constrainedToSize:(CGSize)size;
+- (CGFloat)getHeightWithFont:(CGFloat)font constrainedToSize:(CGSize)size;
+- (CGFloat)getWidthWithFont:(CGFloat)font constrainedToSize:(CGSize)size;
 
 @end

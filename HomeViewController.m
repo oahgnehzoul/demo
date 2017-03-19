@@ -56,7 +56,7 @@
 //    __weak typeof(self) weakSelf = self;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", nil];
-    [manager GET:@"http://114.80.55.2:9500/hexinifs/rs/cms/ad/adHomePage?platform=iphone" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSURLSessionDataTask *task = [manager GET:@"http://114.80.55.2:9500/hexinifs/rs/cms/ad/adHomePage?platform=iphone" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSMutableArray *ary = @[].mutableCopy;
@@ -73,8 +73,9 @@
         [self.itemsForSection setObject:ary forKey:@(0)];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"fail");
     }];
+    [task cancel];
 }
 
 - (Class)cellClassForItem:(MainFirstPageItem *)item AtIndex:(NSIndexPath *)indexPath {

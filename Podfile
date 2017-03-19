@@ -8,4 +8,5 @@ target 'learn-YYModel' do
 	pod 'AFNetworking', '~> 3.1.0'
 	pod 'Masonry', '~> 1.0.2'
     pod 'SVPullToRefresh', '~> 0.4.1'
+	pod 'YYKit', '~> 1.0.9'
 end

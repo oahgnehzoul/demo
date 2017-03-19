@@ -17,7 +17,7 @@
 
 @implementation MDTabView
 @synthesize items = _items;
-
+/*
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.scrollView];
@@ -138,5 +138,5 @@
         self.line.width = width;
     }];
 }
-
+*/
 @end

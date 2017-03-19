@@ -7,6 +7,7 @@
 //
 
 #import "EventDrivenTableViewCell.h"
+#import "RecommendView.h"
 
 @interface EventDrivenTableViewCell ()
 
@@ -14,8 +15,8 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
-@property (nonatomic, strong) UILabel *stockLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) RecommendView *recommendView;
 @end
 
 @implementation EventDrivenTableViewCell
@@ -23,13 +24,13 @@
 + (CGFloat)getHeightWith:(EventDrivenItem *)item {
     CGFloat h = 0;
     h += 15;
-    h += [item.title getHeightWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)];
+    h += [item.title getHeightWithFont:16 constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)];
     h += 5;
-    h += [item.subTitle getHeightWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(kScreen_Width, 1000)];
+    h += [item.subTitle getHeightWithFont:12 constrainedToSize:CGSizeMake(kScreen_Width, 1000)];
     h += 5;
-    NSString *str = [NSString stringWithFormat:@"个股推荐：%@",item.stockTitle];
-    h += [str getHeightWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)];
-    h += 15;
+    CGFloat height = [RecommendView getHeightWith:item];
+    h += height;
+    item.height = h;
     return h;
 }
 
@@ -38,7 +39,7 @@
     self.titleLabel.text = item.title;
     self.subTitleLabel.text = item.subTitle;
     self.timeLabel.text = item.time;
-    self.stockLabel.text = [NSString stringWithFormat:@"个股推荐：%@",item.stockTitle];
+    [self.recommendView setItem:item];
     [self setNeedsLayout];
 }
 
@@ -59,11 +60,9 @@
             [self.contentView addSubview:self.subTitleLabel];
         }
         
-        if (!self.stockLabel) {
-            self.stockLabel = [UILabel new];
-            self.stockLabel.font = [UIFont systemFontOfSize:14];
-            self.stockLabel.textColor = [UIColor hx_colorWithHexRGBAString:@"#4b6490"];
-            [self.contentView addSubview:self.stockLabel];
+        if (!self.recommendView) {
+            self.recommendView = [[RecommendView alloc] init];
+            [self.contentView addSubview:self.recommendView];
         }
         
         if (!self.timeLabel) {
@@ -94,8 +93,9 @@
         make.right.equalTo(self.contentView).offset(-12);
         make.centerY.equalTo(self.subTitleLabel);
     }];
-    [self.stockLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.subTitleLabel);
+//    CGFloat h = [RecommendView getHeightWith:self.item];
+    [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.contentView);
         make.top.equalTo(self.subTitleLabel.mas_bottom).offset(5);
     }];
 }

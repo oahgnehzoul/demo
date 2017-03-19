@@ -10,6 +10,9 @@
 #import "EventDrivenItem.h"
 #import "EventDrivenTableViewCell.h"
 #import "ODRefreshControl.h"
+#import "ZDFPSLabel.h"
+
+
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -18,7 +21,7 @@
 @property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, assign) NSInteger totalPages;
 @property (nonatomic, strong) ODRefreshControl *refreshControl;
-
+@property (nonatomic, strong) ZDFPSLabel *fpsLabel;
 @end
 
 @implementation ViewController
@@ -38,6 +41,14 @@
         make.edges.equalTo(self.view);
     }];
     
+    if (!self.fpsLabel) {
+        self.fpsLabel = [[ZDFPSLabel alloc] init];
+        [self.view addSubview:self.fpsLabel];
+        [self.fpsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.bottom.equalTo(self.view.mas_top);
+        }];
+    }
     __weak typeof(self) weakSelf = self;
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf refreshMore];
@@ -73,8 +84,14 @@
         }
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        if ([error.userInfo[@"NSLocalizedDescription"] isEqualToString:@"cancelled"]) {
+            NSLog(@"canceled");
+            return;
+        }
+        NSLog(@"failed");
     }];
+//    [task cancel];
+//    [manager.session invalidateAndCancel];
 }
 
 - (void)refreshMore {

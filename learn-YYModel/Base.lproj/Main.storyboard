@@ -31,7 +31,7 @@
         <!--Item-->
         <scene sceneID="eZM-CQ-WaI">
             <objects>
-                <viewController id="Vv5-4p-xiQ" sceneMemberID="viewController">
+                <viewController id="Vv5-4p-xiQ" customClass="EventDrivenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T0w-BM-73r"/>
                         <viewControllerLayoutGuide type="bottom" id="bdv-ce-MhQ"/>
@@ -69,7 +69,7 @@
         <!--Item-->
         <scene sceneID="xdi-ZQ-0QW">
             <objects>
-                <viewController id="HDo-Fe-f6W" sceneMemberID="viewController">
+                <viewController id="HDo-Fe-f6W" customClass="EventDrivenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6LH-8x-zqr"/>
                         <viewControllerLayoutGuide type="bottom" id="RhF-0L-dgg"/>

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MDTextItem.h"
+//#import "MDTextItem.h"
 
 @protocol MDTabViewDelegate <NSObject>
 
 @optional
-- (void)tabViewDidSelectedWithItem:(MDTextItem *)item index:(NSInteger)index;
+//- (void)tabViewDidSelectedWithItem:(MDTextItem *)item index:(NSInteger)index;
 
 @end
 
