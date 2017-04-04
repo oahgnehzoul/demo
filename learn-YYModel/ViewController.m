@@ -12,7 +12,6 @@
 #import "ODRefreshControl.h"
 #import "ZDFPSLabel.h"
 
-
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -79,7 +78,7 @@
             if (self.currentPage == 1) {
                 [self.dataItems removeAllObjects];
             }
-            NSArray *ary = [NSArray yy_modelArrayWithClass:[EventDrivenItem class] json:array];
+            NSArray *ary = [NSArray modelArrayWithClass:[EventDrivenItem class] json:array];
             [self.dataItems addObjectsFromArray:ary];
         }
         [self.tableView reloadData];

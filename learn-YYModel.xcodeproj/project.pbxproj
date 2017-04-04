@@ -10,7 +10,8 @@
 		6005520C1E7E9FC0004D463B /* EventDrivenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6005520B1E7E9FC0004D463B /* EventDrivenViewController.m */; };
 		6005520F1E7EA155004D463B /* RecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6005520E1E7EA155004D463B /* RecommendView.m */; };
 		600552121E7EC1C1004D463B /* ZDFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 600552111E7EC1C1004D463B /* ZDFPSLabel.m */; };
-		600552151E7EC2B3004D463B /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 600552141E7EC2B3004D463B /* YYWeakProxy.m */; };
+		606D88201E93FFE3005C1D85 /* HXOfflineStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 606D881F1E93FFE3005C1D85 /* HXOfflineStore.m */; };
+		606D88231E940433005C1D85 /* EventDrivenDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 606D88221E940433005C1D85 /* EventDrivenDetailViewController.m */; };
 		6081DAD21E6EFDDA00E417D1 /* EventDrivenItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6081DAD11E6EFDDA00E417D1 /* EventDrivenItem.m */; };
 		6081DAD51E6EFF6C00E417D1 /* EventDrivenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6081DAD41E6EFF6C00E417D1 /* EventDrivenTableViewCell.m */; };
 		6081DAD81E6F0A8D00E417D1 /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 6081DAD71E6F0A8D00E417D1 /* NSString+Common.m */; };
@@ -41,8 +42,11 @@
 		6005520E1E7EA155004D463B /* RecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendView.m; sourceTree = "<group>"; };
 		600552101E7EC1C1004D463B /* ZDFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDFPSLabel.h; sourceTree = "<group>"; };
 		600552111E7EC1C1004D463B /* ZDFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDFPSLabel.m; sourceTree = "<group>"; };
-		600552131E7EC2B3004D463B /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
-		600552141E7EC2B3004D463B /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		60512EF41E928AAF002A060E /* ProjectDataDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDataDefine.h; sourceTree = "<group>"; };
+		606D881E1E93FFE3005C1D85 /* HXOfflineStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HXOfflineStore.h; sourceTree = "<group>"; };
+		606D881F1E93FFE3005C1D85 /* HXOfflineStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HXOfflineStore.m; sourceTree = "<group>"; };
+		606D88211E940433005C1D85 /* EventDrivenDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDrivenDetailViewController.h; sourceTree = "<group>"; };
+		606D88221E940433005C1D85 /* EventDrivenDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDrivenDetailViewController.m; sourceTree = "<group>"; };
 		6081DACF1E6EFB8F00E417D1 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6081DAD01E6EFDDA00E417D1 /* EventDrivenItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDrivenItem.h; sourceTree = "<group>"; };
 		6081DAD11E6EFDDA00E417D1 /* EventDrivenItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDrivenItem.m; sourceTree = "<group>"; };
@@ -154,19 +158,22 @@
 				60F57D601E69D86B00AF36AF /* ViewController.m */,
 				6005520A1E7E9FC0004D463B /* EventDrivenViewController.h */,
 				6005520B1E7E9FC0004D463B /* EventDrivenViewController.m */,
+				606D88211E940433005C1D85 /* EventDrivenDetailViewController.h */,
+				606D88221E940433005C1D85 /* EventDrivenDetailViewController.m */,
 				6005520D1E7EA155004D463B /* RecommendView.h */,
 				6005520E1E7EA155004D463B /* RecommendView.m */,
 				6081DAD01E6EFDDA00E417D1 /* EventDrivenItem.h */,
 				6081DAD11E6EFDDA00E417D1 /* EventDrivenItem.m */,
 				600552101E7EC1C1004D463B /* ZDFPSLabel.h */,
 				600552111E7EC1C1004D463B /* ZDFPSLabel.m */,
-				600552131E7EC2B3004D463B /* YYWeakProxy.h */,
-				600552141E7EC2B3004D463B /* YYWeakProxy.m */,
 				6081DAD31E6EFF6C00E417D1 /* EventDrivenTableViewCell.h */,
 				6081DAD41E6EFF6C00E417D1 /* EventDrivenTableViewCell.m */,
 				6081DACF1E6EFB8F00E417D1 /* PrefixHeader.pch */,
+				60512EF41E928AAF002A060E /* ProjectDataDefine.h */,
 				6081DAD61E6F0A8D00E417D1 /* NSString+Common.h */,
 				6081DAD71E6F0A8D00E417D1 /* NSString+Common.m */,
+				606D881E1E93FFE3005C1D85 /* HXOfflineStore.h */,
+				606D881F1E93FFE3005C1D85 /* HXOfflineStore.m */,
 				60F57D621E69D86B00AF36AF /* Main.storyboard */,
 				60F57D651E69D86B00AF36AF /* Assets.xcassets */,
 				60F57D671E69D86B00AF36AF /* LaunchScreen.storyboard */,
@@ -325,13 +332,14 @@
 				6081DAE21E706E1400E417D1 /* MainFirstPageItem.m in Sources */,
 				6081DADC1E6F1D5200E417D1 /* ODRefreshControl.m in Sources */,
 				600552121E7EC1C1004D463B /* ZDFPSLabel.m in Sources */,
+				606D88201E93FFE3005C1D85 /* HXOfflineStore.m in Sources */,
 				60F57D5E1E69D86B00AF36AF /* AppDelegate.m in Sources */,
 				6081DAD81E6F0A8D00E417D1 /* NSString+Common.m in Sources */,
+				606D88231E940433005C1D85 /* EventDrivenDetailViewController.m in Sources */,
 				6081DAF71E70889E00E417D1 /* MDTabView.m in Sources */,
 				6081DAF01E707AAE00E417D1 /* SJZXTableViewCell.m in Sources */,
 				6005520F1E7EA155004D463B /* RecommendView.m in Sources */,
 				6081DAEB1E707A9E00E417D1 /* XGRLTableViewCell.m in Sources */,
-				600552151E7EC2B3004D463B /* YYWeakProxy.m in Sources */,
 				60F57D5B1E69D86B00AF36AF /* main.m in Sources */,
 				6081DADF1E706AD000E417D1 /* HomeViewController.m in Sources */,
 				6005520C1E7E9FC0004D463B /* EventDrivenViewController.m in Sources */,
@@ -452,11 +460,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C42AC92C5526B7292CDA3A9 /* Pods-learn-YYModel.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 94W382AB54;
 				GCC_PREFIX_HEADER = "learn-YYModel/PrefixHeader.pch";
 				INFOPLIST_FILE = "learn-YYModel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "oahgnehzoul.learn-YYModel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -471,6 +481,7 @@
 				GCC_PREFIX_HEADER = "learn-YYModel/PrefixHeader.pch";
 				INFOPLIST_FILE = "learn-YYModel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "oahgnehzoul.learn-YYModel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -62,7 +62,7 @@
         NSMutableArray *ary = @[].mutableCopy;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             NSDictionary *dic = responseObject;
-            [self.dataItems addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MainFirstPageItem class] json:dic[@"content"]]];
+            [self.dataItems addObjectsFromArray:[NSArray modelArrayWithClass:[MainFirstPageItem class] json:dic[@"content"]]];
             [self.dataItems enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSLog(@"%@",obj);
                 if ([obj isKindOfClass:[JGGItem class]] || [obj isKindOfClass:[XGRLItem class]] || [obj isKindOfClass:[SJZXItem class]]) {

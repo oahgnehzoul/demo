@@ -15,4 +15,6 @@
 
 + (CGFloat)getHeightWith:(EventDrivenItem *)item;
 
+
+@property (nonatomic, copy) void (^goDetailAction)(EventDrivenItem *item);
 @end

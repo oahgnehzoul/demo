@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HexColors.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +34,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>YYModel.xcscheme</key>
+		<key>YTKKeyValueStore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>YYKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,7 +47,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6294AD63C3D849460B801E6BBE299FF2</key>
+		<key>124413585C08655C9FA503752A1D00F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>316667BB3FC8C570877F63007A53DC3B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C5F78B28BB454E57AE9469C3AF0D062</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8642CC820CE8C5B88C113D7F47AF4BC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A393D84E17911004F2B65D91FBA85CEA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C3E0C7C3F2193AB502C4CFF772B524C1</key>
+		<key>D7D23FBBCE42F62D4F125C1BEAED5C51</key>
 		<dict>
 			<key>primary</key>
 			<true/>

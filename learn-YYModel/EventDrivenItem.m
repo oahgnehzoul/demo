@@ -46,6 +46,20 @@
         }];
         self.stocks = stocks;
     }
+    NSLog(@"originId:%@",dic[@"ID"]);
+    NSString *value = [NSString stringWithFormat:@"%@",dic[@"ID"]];
+    NSLog(@"intValue:%d",[value intValue]);
+    NSLog(@"integerValue:%ld",[value longValue]);
+    NSLog(@"longlongValue:%lld",[value longLongValue]);
+
+    EQInt a = [value integerValue];
+//    if (__LP64__) {
+//        a = [value longValue];
+//    }
+    NSLog(@"EQInt:%lld",(long long)a);
+
+//    NSLog(@"%ld",a);
+    NSLog(@"  ");
     return YES;
 }
 @end

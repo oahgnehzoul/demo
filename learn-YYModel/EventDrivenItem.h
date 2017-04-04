@@ -20,8 +20,9 @@
 @property (nonatomic, copy) NSString *subTitle;
 @property (nonatomic, copy) NSString *stockStr;
 @property (nonatomic, copy) NSString *time;
-@property (nonatomic, assign) NSInteger eventDrivenId;
+@property (nonatomic, copy) NSString *eventDrivenId;
 
 @property (nonatomic, strong) NSArray *stocks;
 @property (nonatomic, assign) CGFloat height;
+
 @end

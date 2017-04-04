@@ -8,6 +8,7 @@
 
 #import "EventDrivenTableViewCell.h"
 #import "RecommendView.h"
+#import "HXOfflineStore.h"
 
 @interface EventDrivenTableViewCell ()
 
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) RecommendView *recommendView;
+@property (nonatomic, strong) HXOfflineStore *store;
+
 @end
 
 @implementation EventDrivenTableViewCell
@@ -40,6 +43,14 @@
     self.subTitleLabel.text = item.subTitle;
     self.timeLabel.text = item.time;
     [self.recommendView setItem:item];
+    
+    self.store = [[HXOfflineStore alloc] initWithDBName:@"EventDriven.db"];
+    id result = [self.store getObjectById:item.eventDrivenId fromTable:@"EventDriven_table"];
+    if (result) {
+        self.titleLabel.textColor = [UIColor redColor];
+    } else {
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
     [self setNeedsLayout];
 }
 
@@ -50,6 +61,15 @@
             self.titleLabel.font = [UIFont systemFontOfSize:16];
             self.titleLabel.textColor = [UIColor blackColor];
             self.titleLabel.numberOfLines = 0;
+            
+            __weak typeof(self) weakSelf = self;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+                if (weakSelf.goDetailAction) {
+                    weakSelf.goDetailAction(weakSelf.item);
+                }
+            }];
+            self.titleLabel.userInteractionEnabled = YES;
+            [self.titleLabel addGestureRecognizer:tap];
             [self.contentView addSubview:self.titleLabel];
         }
         

@@ -14,25 +14,35 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - HexColors (4.0.0)
   - Masonry (1.0.2)
   - SVPullToRefresh (0.4.1)
-  - YYModel (1.0.4)
+  - YTKKeyValueStore (0.1.2):
+    - FMDB (~> 2.0)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - HexColors (~> 4.0.0)
   - Masonry (~> 1.0.2)
   - SVPullToRefresh (~> 0.4.1)
-  - YYModel (~> 1.0.4)
+  - YTKKeyValueStore (~> 0.1.2)
+  - YYKit (~> 1.0.9)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  YTKKeyValueStore: 4d002941540dd5108fa23009b71e0f2f937f7a0f
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 633825151ae46f5e22d41332b13bd0796728da4a
+PODFILE CHECKSUM: 29f8a964d91aa9b0cc9225fc4fbda0f709695760
 
 COCOAPODS: 1.2.0
