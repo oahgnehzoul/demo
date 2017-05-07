@@ -7,15 +7,21 @@
 //
 
 #import "RecommendView.h"
+#import "YYText.h"
+#import "NewRecommendView.h"
 
 @interface RecommendView ()
 
 @property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) UILabel *leftLabel;
+@property (nonatomic, strong) NewRecommendView *tagView;
 @end
 @implementation RecommendView
 
 + (CGFloat)getHeightWith:(EventDrivenItem *)item {
+    if (item.recommendViewHeight > 0) {
+        return item.recommendViewHeight;
+    }
     __block CGFloat x = 0;
     __block CGFloat y = 20;
     NSString *str = @"个股推荐：";
@@ -33,6 +39,7 @@
         x += width;
     }];
     y += 10;
+    item.recommendViewHeight = y;
     return y;
 }
 
@@ -43,6 +50,25 @@
     [ret setTitle:stockItem.stockName forState:UIControlStateNormal];
     ret.size = CGSizeMake([self.class computeStockItemWidthWith:stockItem], 20);
     return ret;
+}
+
+- (YYLabel *)generateYYLabelWith:(EventDrivenStockItem *)stockItem {
+    YYLabel *label = [YYLabel new];
+    label.font = [UIFont systemFontOfSize:14];
+    label.displaysAsynchronously = YES;
+    label.textColor = [UIColor hx_colorWithHexRGBAString:@"#4b6490"];
+    label.text = stockItem.stockName;
+    return label;
+}
+
+- (UILabel *)generateLabelWith:(EventDrivenStockItem *)stockItem {
+    UILabel *label = [UILabel new];
+    label.font = [UIFont systemFontOfSize:14];
+    label.layer.drawsAsynchronously = YES;
+    label.textColor = [UIColor hx_colorWithHexRGBAString:@"#4b6490"];
+    label.text = stockItem.stockName;
+//    label.size = CGSizeMake([self.class computeStockItemWidthWith:stockItem], 20);
+    return label;
 }
 
 - (void)tapAction:(UIButton *)button {
@@ -60,15 +86,29 @@
         self.leftLabel.text = str;
         [self addSubview:self.leftLabel];
     }
-    [_buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
-        [button removeFromSuperview];
+    
+//    __block NSMutableArray *strs = @[].mutableCopy;
+//    [_item.stocks enumerateObjectsUsingBlock:^(EventDrivenStockItem *stockItem, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [strs addObject:stockItem.stockName];
+//    }];
+    
+//    [self.tagView removeFromSuperview];
+//    self.tagView = [[NewRecommendView alloc] initWithFrame:CGRectMake(self.leftLabel.right, self.leftLabel.top, kScreen_Width - 15 - self.leftLabel.width , self.item.recommendViewHeight)];
+//    self.tagView.dataSource = strs;
+//    [self addSubview:self.tagView];
+//    [_buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [button removeFromSuperview];
+//    }];
+    [_buttons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
     }];
     _buttons = @[].mutableCopy;
     [_item.stocks enumerateObjectsUsingBlock:^(EventDrivenStockItem *stockItem, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *button = [self generateButtonWith:stockItem];
-        [_buttons addObject:button];
-        [button addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
+        YYLabel *label = [self generateYYLabelWith:stockItem];
+//        UILabel *label = [self generateLabelWith:stockItem];
+        [_buttons addObject:label];
+//        [button addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:label];
     }];
 }
 
@@ -79,20 +119,23 @@
     __block CGFloat x = left + 15;
     __block CGFloat y = 0;
     __block CGFloat remain = kScreen_Width;
-    [_buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_buttons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        UILabel *label = (UILabel *)obj;
+        YYLabel *label = (YYLabel *)obj;
         CGFloat width = [self.class computeStockItemWidthWith:self.item.stocks[idx]];
         if (x + width > remain) {
             x = 15 + left;
-            y += button.height + 3;
+            y += 20 + 3;
         }
-        button.origin = (CGPoint){x, y};
-
-        x += button.width;
+        label.origin = (CGPoint){x, y};
+        label.size = CGSizeMake(width, 20);
+        x += label.width;
     }];
 }
 
 + (CGFloat)computeStockItemWidthWith:(EventDrivenStockItem *)item {
     return [item.stockName getWidthWithFont:14 constrainedToSize:CGSizeMake(200, 1000)];
 }
+
 
 @end

@@ -35,7 +35,7 @@
         [self.tableView registerClass:[EventDrivenTableViewCell class] forCellReuseIdentifier:EventDrivenTableViewCellIdentifier];
         [self.view addSubview:self.tableView];
     }
-    
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -45,9 +45,10 @@
         [self.view addSubview:self.fpsLabel];
         [self.fpsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.bottom.equalTo(self.view.mas_top);
+            make.top.equalTo(self.view.mas_top).offset(20);
         }];
     }
+    self.navigationController.navigationBar.hidden = YES;
     __weak typeof(self) weakSelf = self;
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf refreshMore];
@@ -57,12 +58,16 @@
     
     [self refresh];
     
-    _refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    [_refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+//    _refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+//    [_refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
 }
 
 
 - (void)refresh {
+    if (self.currentPage > self.totalPages && self.totalPages != 0) {
+        [self.tableView.pullToRefreshView stopAnimating];
+        return;
+    }
     __weak typeof(self) weakSelf = self;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
@@ -78,10 +83,12 @@
             if (self.currentPage == 1) {
                 [self.dataItems removeAllObjects];
             }
-            NSArray *ary = [NSArray modelArrayWithClass:[EventDrivenItem class] json:array];
+            NSArray *ary = [NSArray yy_modelArrayWithClass:[EventDrivenItem class] json:array];
             [self.dataItems addObjectsFromArray:ary];
         }
         [self.tableView reloadData];
+        [self.tableView.pullToRefreshView stopAnimating];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if ([error.userInfo[@"NSLocalizedDescription"] isEqualToString:@"cancelled"]) {
             NSLog(@"canceled");
@@ -99,10 +106,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"调用了--->cellForRowAtIndexPath%@",indexPath);
     EventDrivenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:EventDrivenTableViewCellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setItem:self.dataItems[indexPath.row]];
+//    [cell setItem:self.dataItems[indexPath.row]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"调用了--->willDisplayCell%@",indexPath);
+    EventDrivenTableViewCell *customCell = (EventDrivenTableViewCell *)cell;
+    [customCell setItem:self.dataItems[indexPath.row]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -114,6 +128,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"调用了--->heightForRowAtIndexPath%@",indexPath);
     return [EventDrivenTableViewCell getHeightWith:self.dataItems[indexPath.row]];
 }
 

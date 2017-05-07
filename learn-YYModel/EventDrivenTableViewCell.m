@@ -25,6 +25,9 @@
 @implementation EventDrivenTableViewCell
 
 + (CGFloat)getHeightWith:(EventDrivenItem *)item {
+    if (item.height > 0) {
+        return item.height;
+    }
     CGFloat h = 0;
     h += 15;
     h += [item.title getHeightWithFont:16 constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)];
@@ -40,18 +43,23 @@
 - (void)setItem:(EventDrivenItem *)item {
     _item = item;
     self.titleLabel.text = item.title;
+    self.titleLabel.frame = CGRectMake(12, 15, kScreen_Width - 12 * 2, [item.title getHeightWithFont:16 constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)]);
     self.subTitleLabel.text = item.subTitle;
+    self.subTitleLabel.frame = CGRectMake(self.titleLabel.left, self.titleLabel.bottom + 5, 200, [item.subTitle getHeightWithFont:12 constrainedToSize:CGSizeMake(kScreen_Width, 1000)]);
     self.timeLabel.text = item.time;
+    self.timeLabel.frame = CGRectMake(0, 0, [item.time getWidthWithFont:14 constrainedToSize:CGSizeMake(kScreen_Width, 1000)], [item.time getHeightWithFont:14 constrainedToSize:CGSizeMake(kScreen_Width, 1000)]);
+    self.timeLabel.centerY = self.subTitleLabel.centerY;
+    self.timeLabel.right = self.right - 12;
     [self.recommendView setItem:item];
-    
-    self.store = [[HXOfflineStore alloc] initWithDBName:@"EventDriven.db"];
-    id result = [self.store getObjectById:item.eventDrivenId fromTable:@"EventDriven_table"];
-    if (result) {
-        self.titleLabel.textColor = [UIColor redColor];
-    } else {
+    self.recommendView.frame = CGRectMake(0, self.subTitleLabel.bottom + 5, kScreen_Width, [RecommendView getHeightWith:item]);
+//    self.store = [[HXOfflineStore alloc] initWithDBName:@"EventDriven.db"];
+//    id result = [self.store getObjectById:item.eventDrivenId fromTable:@"EventDriven_table"];
+//    if (result) {
+//        self.titleLabel.textColor = [UIColor redColor];
+//    } else {
         self.titleLabel.textColor = [UIColor blackColor];
-    }
-    [self setNeedsLayout];
+//    }
+//    [self setNeedsLayout];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -62,14 +70,14 @@
             self.titleLabel.textColor = [UIColor blackColor];
             self.titleLabel.numberOfLines = 0;
             
-            __weak typeof(self) weakSelf = self;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-                if (weakSelf.goDetailAction) {
-                    weakSelf.goDetailAction(weakSelf.item);
-                }
-            }];
+//            __weak typeof(self) weakSelf = self;
+//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+//                if (weakSelf.goDetailAction) {
+//                    weakSelf.goDetailAction(weakSelf.item);
+//                }
+//            }];
             self.titleLabel.userInteractionEnabled = YES;
-            [self.titleLabel addGestureRecognizer:tap];
+//            [self.titleLabel addGestureRecognizer:tap];
             [self.contentView addSubview:self.titleLabel];
         }
         
@@ -100,24 +108,23 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(12);
-        make.top.equalTo(self.contentView).offset(15);
-        make.right.equalTo(self.contentView).offset(-12);
-    }];
-    [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
-    }];
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-12);
-        make.centerY.equalTo(self.subTitleLabel);
-    }];
-//    CGFloat h = [RecommendView getHeightWith:self.item];
-    [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.contentView);
-        make.top.equalTo(self.subTitleLabel.mas_bottom).offset(5);
-    }];
+//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.contentView).offset(12);
+//        make.top.equalTo(self.contentView).offset(15);
+//        make.right.equalTo(self.contentView).offset(-12);
+//    }];
+//    [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.titleLabel);
+//        make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
+//    }];
+//    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.contentView).offset(-12);
+//        make.centerY.equalTo(self.subTitleLabel);
+//    }];
+//    [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.bottom.equalTo(self.contentView);
+//        make.top.equalTo(self.subTitleLabel.mas_bottom).offset(5);
+//    }];
 }
 
 

@@ -12,7 +12,7 @@
 #import "ZDFPSLabel.h"
 #import "HXOfflineStore.h"
 #import "EventDrivenDetailViewController.h"
-static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionId=listDataAction&page=1&rows=30&servicehost=20101&token=1917c1b23b51c05a74360b6dd7dfdb76";
+static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionId=listDataAction&rows=30&servicehost=20101&token=1917c1b23b51c05a74360b6dd7dfdb76";
 @interface EventDrivenViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -20,6 +20,8 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
 @property (nonatomic, strong) ZDFPSLabel *fpsLabel;
 
 @property (nonatomic, strong) HXOfflineStore *store;
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger totalPages;
 @end
 
 @implementation EventDrivenViewController
@@ -59,10 +61,12 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
 - (void)loadRequest {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    [manager GET:EventDrivenKey parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSString *url = [NSString stringWithFormat:@"EventDrivenKey&page=%ld",(long)self.currentPage];
+    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = responseObject;
         NSArray *rows = dic[@"op_info"][@"rows"];
-        self.dataItems = [NSArray modelArrayWithClass:[EventDrivenItem class] json:rows].mutableCopy;
+        self.totalPages = [dic[@"op_info"][@"total"] integerValue];
+        self.dataItems = [NSArray yy_modelArrayWithClass:[EventDrivenItem class] json:rows].mutableCopy;
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed");
@@ -76,13 +80,13 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
     
     __weak typeof(self) weakSelf = self;
     cell.goDetailAction = ^(EventDrivenItem *item){
-        NSString *tableName = @"EventDriven_table";
+//        NSString *tableName = @"EventDriven_table";
         if (!weakSelf.store) {
             weakSelf.store = [[HXOfflineStore alloc] initWithDBName:@"EventDriven.db"];
-            [weakSelf.store createTable:tableName];
+//            [weakSelf.store createTable:tableName];
         }
         
-        [weakSelf.store putObject:@[@(1)] withId:item.eventDrivenId intoTable:tableName];
+//        [weakSelf.store putObject:@[@(1)] withId:item.eventDrivenId intoTable:tableName];
 //        [weakSelf.tableView reloadData];
         [weakSelf.navigationController pushViewController:[[EventDrivenDetailViewController alloc] init] animated:YES];
     };

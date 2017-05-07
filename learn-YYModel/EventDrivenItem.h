@@ -24,5 +24,6 @@
 
 @property (nonatomic, strong) NSArray *stocks;
 @property (nonatomic, assign) CGFloat height;
-
+@property (nonatomic, assign) CGFloat recommendViewHeight;
+@property (nonatomic, copy) NSMutableArray *layouts;
 @end
