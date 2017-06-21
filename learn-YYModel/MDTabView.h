@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSMutableArray *buttons;
 @property (nonatomic, strong) UIColor *activeColor;
 
-@property (nonatomic, weak) id<MDTabViewDelegate> delegate;
+//@property (nonatomic, weak) id<MDTabViewDelegate> delegate;
 @property (nonatomic, assign) NSInteger selectedIndex;
 
 @end

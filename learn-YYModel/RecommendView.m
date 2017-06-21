@@ -134,6 +134,9 @@
 }
 
 + (CGFloat)computeStockItemWidthWith:(EventDrivenStockItem *)item {
+    if (item.width) {
+        return item.width;
+    }
     return [item.stockName getWidthWithFont:14 constrainedToSize:CGSizeMake(200, 1000)];
 }
 

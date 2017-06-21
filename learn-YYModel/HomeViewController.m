@@ -75,7 +75,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"fail");
     }];
-//    [task cancel];
+
 }
 
 - (Class)cellClassForItem:(MainFirstPageItem *)item AtIndex:(NSIndexPath *)indexPath {
@@ -136,7 +136,7 @@
         _tabView = [[MDTabView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width / 1.2, 40)];
         _tabView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _tabView.backgroundColor = [UIColor whiteColor];
-        _tabView.delegate = self;
+//        _tabView.delegate = self;
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, kScreen_Width, 0.5)];
         line.backgroundColor = [UIColor colorWithWhite:0 alpha:0.06];

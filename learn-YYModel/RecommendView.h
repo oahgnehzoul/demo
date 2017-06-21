@@ -15,4 +15,6 @@
 
 
 + (CGFloat)getHeightWith:(EventDrivenItem *)item;
+
++ (CGFloat)computeStockItemWidthWith:(EventDrivenStockItem *)item;
 @end

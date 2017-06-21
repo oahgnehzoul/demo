@@ -106,8 +106,8 @@
 }
 
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
 //    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.equalTo(self.contentView).offset(12);
 //        make.top.equalTo(self.contentView).offset(15);
@@ -125,7 +125,7 @@
 //        make.left.right.bottom.equalTo(self.contentView);
 //        make.top.equalTo(self.subTitleLabel.mas_bottom).offset(5);
 //    }];
-}
+//}
 
 
 

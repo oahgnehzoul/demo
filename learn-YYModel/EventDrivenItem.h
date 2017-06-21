@@ -12,6 +12,7 @@
 @property (nonatomic, copy) NSString *stockName;
 @property (nonatomic, copy) NSString *stockCode;
 @property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGFloat width;
 @end
 
 @interface EventDrivenItem : NSObject<YYModel>

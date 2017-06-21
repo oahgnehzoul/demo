@@ -12,6 +12,7 @@
 #import "ZDFPSLabel.h"
 #import "HXOfflineStore.h"
 #import "EventDrivenDetailViewController.h"
+#import "RecommendView.h"
 static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionId=listDataAction&rows=30&servicehost=20101&token=1917c1b23b51c05a74360b6dd7dfdb76";
 @interface EventDrivenViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -61,12 +62,19 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
 - (void)loadRequest {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
-    NSString *url = [NSString stringWithFormat:@"EventDrivenKey&page=%ld",(long)self.currentPage];
+    NSString *url = [NSString stringWithFormat:@"http://app.gaotime.com/gtservice?actionId=listDataAction&order=desc&rows=30&servicehost=20101&sort=UPDATETIME&token=1917c1b23b51c05a74360b6dd7dfdb76&page=%ld",(long)self.currentPage];
     [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = responseObject;
         NSArray *rows = dic[@"op_info"][@"rows"];
         self.totalPages = [dic[@"op_info"][@"total"] integerValue];
         self.dataItems = [NSArray yy_modelArrayWithClass:[EventDrivenItem class] json:rows].mutableCopy;
+        [self.dataItems enumerateObjectsUsingBlock:^(EventDrivenItem *item, NSUInteger idx, BOOL * _Nonnull stop) {
+            item.height = [EventDrivenTableViewCell getHeightWith:item];
+            
+            [item.stocks enumerateObjectsUsingBlock:^(EventDrivenStockItem *stockItem, NSUInteger idx, BOOL * _Nonnull stop) {
+                stockItem.width = [RecommendView computeStockItemWidthWith:stockItem];
+            }];
+        }];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed");
@@ -75,7 +83,7 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EventDrivenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:EventDrivenTableViewCellIdentifier forIndexPath:indexPath];
-    [cell setItem:self.dataItems[indexPath.row]];
+//    [cell setItem:self.dataItems[indexPath.row]];
     
     
     __weak typeof(self) weakSelf = self;
@@ -91,6 +99,11 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
         [weakSelf.navigationController pushViewController:[[EventDrivenDetailViewController alloc] init] animated:YES];
     };
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    EventDrivenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:EventDrivenTableViewCellIdentifier forIndexPath:indexPath];
+    [(EventDrivenTableViewCell *)cell setItem:self.dataItems[indexPath.row]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
