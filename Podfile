@@ -13,6 +13,7 @@ target 'learn-YYModel' do
     pod 'YYText', '~> 1.0.7'
     pod 'FMDB', '~> 2.6.2'
     pod 'AsyncDisplayKit', '~> 2.2'
+    pod 'TTTAttributedLabel', '~> 2.0.0'
 end
 
 

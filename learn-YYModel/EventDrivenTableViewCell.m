@@ -30,28 +30,34 @@
     }
     CGFloat h = 0;
     h += 15;
-    h += [item.title getHeightWithFont:16 constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)];
+    item.titleHeight = [item.title getHeightWithFont:16 constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)];
+    h += item.titleHeight;
     h += 5;
-    h += [item.subTitle getHeightWithFont:12 constrainedToSize:CGSizeMake(kScreen_Width, 1000)];
+    item.subTitleHeight = [item.subTitle getHeightWithFont:12 constrainedToSize:CGSizeMake(kScreen_Width, 1000)];
+    h += item.subTitleHeight;
     h += 5;
-    CGFloat height = [RecommendView getHeightWith:item];
-    h += height;
+    item.recommendViewHeight = [RecommendView getHeightWith:item];
+    h += item.recommendViewHeight;
+    item.timeHeight = [item.time getHeightWithFont:14 constrainedToSize:CGSizeMake(kScreen_Width, 1000)];
+    item.timeWidth = [item.time getWidthWithFont:14 constrainedToSize:CGSizeMake(kScreen_Width, 1000)];
     item.height = h;
+    
+    
     return h;
 }
 
 - (void)setItem:(EventDrivenItem *)item {
     _item = item;
     self.titleLabel.text = item.title;
-    self.titleLabel.frame = CGRectMake(12, 15, kScreen_Width - 12 * 2, [item.title getHeightWithFont:16 constrainedToSize:CGSizeMake(kScreen_Width - 12 * 2, 1000)]);
+    self.titleLabel.frame = CGRectMake(12, 15, kScreen_Width - 12 * 2, item.titleHeight);
     self.subTitleLabel.text = item.subTitle;
-    self.subTitleLabel.frame = CGRectMake(self.titleLabel.left, self.titleLabel.bottom + 5, 200, [item.subTitle getHeightWithFont:12 constrainedToSize:CGSizeMake(kScreen_Width, 1000)]);
+    self.subTitleLabel.frame = CGRectMake(self.titleLabel.left, self.titleLabel.bottom + 5, 200, item.subTitleHeight);
     self.timeLabel.text = item.time;
-    self.timeLabel.frame = CGRectMake(0, 0, [item.time getWidthWithFont:14 constrainedToSize:CGSizeMake(kScreen_Width, 1000)], [item.time getHeightWithFont:14 constrainedToSize:CGSizeMake(kScreen_Width, 1000)]);
+    self.timeLabel.frame = CGRectMake(0, 0, item.timeWidth,item.timeHeight );
     self.timeLabel.centerY = self.subTitleLabel.centerY;
     self.timeLabel.right = self.right - 12;
     [self.recommendView setItem:item];
-    self.recommendView.frame = CGRectMake(0, self.subTitleLabel.bottom + 5, kScreen_Width, [RecommendView getHeightWith:item]);
+    self.recommendView.frame = CGRectMake(0, self.subTitleLabel.bottom + 5, kScreen_Width, item.recommendViewHeight);
 //    self.store = [[HXOfflineStore alloc] initWithDBName:@"EventDriven.db"];
 //    id result = [self.store getObjectById:item.eventDrivenId fromTable:@"EventDriven_table"];
 //    if (result) {

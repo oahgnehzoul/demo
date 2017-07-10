@@ -251,6 +251,7 @@
 				60F57D541E69D86B00AF36AF /* Resources */,
 				63C0F10C8076CA9994A041DA /* [CP] Embed Pods Frameworks */,
 				0DBB47F5BCA5DA61FD8BF920 /* [CP] Copy Pods Resources */,
+				60E53CC91F13D76000DE6F22 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -272,7 +273,7 @@
 				TargetAttributes = {
 					60F57D551E69D86B00AF36AF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 94W382AB54;
+						DevelopmentTeam = J3Q3X3YYZ2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -324,6 +325,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-learn-YYModel/Pods-learn-YYModel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		60E53CC91F13D76000DE6F22 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "REVEAL_APP_PATH=$(mdfind kMDItemCFBundleIdentifier=\"com.ittybittyapps.Reveal2\" | head -n 1)\nBUILD_SCRIPT_PATH=\"${REVEAL_APP_PATH}/Contents/SharedSupport/Scripts/reveal_server_build_phase.sh\"\nif [ \"${REVEAL_APP_PATH}\" -a -e \"${BUILD_SCRIPT_PATH}\" ]; then\n\"${BUILD_SCRIPT_PATH}\"\nelse\necho \"Reveal Server not loaded: Cannot find a compatible Reveal app.\"\nfi";
 		};
 		63C0F10C8076CA9994A041DA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -509,12 +523,12 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 94W382AB54;
+				DEVELOPMENT_TEAM = J3Q3X3YYZ2;
 				GCC_PREFIX_HEADER = "learn-YYModel/PrefixHeader.pch";
 				INFOPLIST_FILE = "learn-YYModel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "oahgnehzoul.learn-YYModel";
+				PRODUCT_BUNDLE_IDENTIFIER = "l.z.h.learn-YYModel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -524,12 +538,12 @@
 			baseConfigurationReference = E2C1F6E25CCC02DC688F45C1 /* Pods-learn-YYModel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 94W382AB54;
+				DEVELOPMENT_TEAM = J3Q3X3YYZ2;
 				GCC_PREFIX_HEADER = "learn-YYModel/PrefixHeader.pch";
 				INFOPLIST_FILE = "learn-YYModel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "oahgnehzoul.learn-YYModel";
+				PRODUCT_BUNDLE_IDENTIFIER = "l.z.h.learn-YYModel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

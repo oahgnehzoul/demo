@@ -106,16 +106,18 @@ static NSString *EventDrivenKey = @"http://app.vip.gaotime.com/gtservice?actionI
     [(EventDrivenTableViewCell *)cell setItem:self.dataItems[indexPath.row]];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataItems.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     EventDrivenItem *item = self.dataItems[indexPath.row];
-    if (item.height) {
-        return item.height;
-    }
-    return [EventDrivenTableViewCell getHeightWith:self.dataItems[indexPath.row]];
+    return item.height;
 }
 
 

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7F3BC65F9D8E1FFF52989B2004BF1A5B'
-               BlueprintName = 'YYModel'
+               BlueprintIdentifier = '47FF91E8F7B24BD7CCB84CB64E260A46'
+               BlueprintName = 'TTTAttributedLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libYYModel.a'>
+               BuildableName = 'libTTTAttributedLabel.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

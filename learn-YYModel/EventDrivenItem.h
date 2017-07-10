@@ -27,4 +27,13 @@
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, assign) CGFloat recommendViewHeight;
 @property (nonatomic, copy) NSMutableArray *layouts;
+
+@property (nonatomic, assign) CGFloat titleHeight;
+@property (nonatomic, assign) CGFloat subTitleHeight;
+@property (nonatomic, assign) CGFloat timeWidth;
+@property (nonatomic, assign) CGFloat timeHeight;
+
+@property (nonatomic, assign) CGFloat leftWidth;
+
+@property (nonatomic, copy) NSString *tagStr;
 @end

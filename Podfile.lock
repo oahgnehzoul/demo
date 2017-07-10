@@ -41,6 +41,7 @@ PODS:
     - PINCache (= 3.0.1-beta.4)
     - PINRemoteImage/Core
   - SVPullToRefresh (0.4.1)
+  - TTTAttributedLabel (2.0.0)
   - YYModel (1.0.4)
   - YYText (1.0.7)
 
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - HexColors (~> 4.0.0)
   - Masonry (~> 1.0.2)
   - SVPullToRefresh (~> 0.4.1)
+  - TTTAttributedLabel (~> 2.0.0)
   - YYModel (~> 1.0.4)
   - YYText (~> 1.0.7)
 
@@ -64,9 +66,10 @@ SPEC CHECKSUMS:
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
   PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: e257a06264d7f72be0a4452a9e154c75212bc5c3
+PODFILE CHECKSUM: 11adf1ba9d460e178fd5459b2fe42d21d033bace
 
 COCOAPODS: 1.2.0
